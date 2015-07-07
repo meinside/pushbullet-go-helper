@@ -1,0 +1,6 @@
+# temporary files/dirs
+tmp
+*.swp
+
+# osx files
+.DS_Store
