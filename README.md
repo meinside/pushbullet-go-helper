@@ -20,12 +20,16 @@ import (
 )
 ```
 
-## 3. send a note
+## 3. send pushes
 
 ```go
 func main() {
 	if pbhelper.SendNote("This is a note", "From Golang, through Pushbullet") {
-		fmt.Println("Push was successful.")
+		fmt.Println("Push note was successful.")
+	}
+	
+	if pbhelper.SendLink("This is a link", "From Golang, through Pushbullet", "http://www.golang.org") {
+		fmt.Println("Push link was successful.")
 	}
 }
 ```
@@ -49,6 +53,7 @@ $ vi /some/directory/.pushbullet.token
 ```
 $ /some/directory/pbhelper_test
 
-Push was successful.
+Push note was successful.
+Push link was successful.
 ```
 

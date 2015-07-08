@@ -52,3 +52,24 @@ func SendNote(title string, message string) bool {
 	}
 	return true
 }
+
+// send push (link)
+func SendLink(title string, message string, url string) bool {
+	token, err := readAccessToken()
+	if err != nil {
+		return false
+	}
+
+	pb := pushbullet.New(token)
+
+	link := requests.NewLink()
+	link.Title = title
+	link.Body = message
+	link.Url = url
+
+	if _, err := pb.PostPushesLink(link); err != nil {
+		fmt.Println("Push failed:", err)
+		return false
+	}
+	return true
+}
