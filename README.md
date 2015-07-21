@@ -10,7 +10,7 @@ $ go get -u github.com/meinside/pushbullet-go-helper/...
 ## 2. import this helper
 
 ```go
-// pbhelper_test.go
+// test_pbhelper.go
 
 package main
 

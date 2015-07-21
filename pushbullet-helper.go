@@ -1,3 +1,7 @@
+/*
+	last update: 2015.07.21.
+*/
+
 package pbhelper
 
 import (
@@ -33,8 +37,13 @@ func readAccessToken() (token string, err error) {
 	return strings.TrimSpace(string(buf)), nil
 }
 
-// send push (note)
+// send push(note)
 func SendNote(title string, message string) bool {
+	return SendNoteToChannel("", title, message)
+}
+
+// send push(note) to channel
+func SendNoteToChannel(channelTag string, title string, message string) bool {
 	token, err := readAccessToken()
 	if err != nil {
 		return false
@@ -43,6 +52,9 @@ func SendNote(title string, message string) bool {
 	pb := pushbullet.New(token)
 
 	note := requests.NewNote()
+	if channelTag != "" {
+		note.Push.ChannelTag = channelTag
+	}
 	note.Title = title
 	note.Body = message
 
@@ -53,8 +65,13 @@ func SendNote(title string, message string) bool {
 	return true
 }
 
-// send push (link)
+// send push(link)
 func SendLink(title string, message string, url string) bool {
+	return SendLinkToChannel("", title, message, url)
+}
+
+// send push(link) to channel
+func SendLinkToChannel(channelTag string, title string, message string, url string) bool {
 	token, err := readAccessToken()
 	if err != nil {
 		return false
@@ -63,6 +80,9 @@ func SendLink(title string, message string, url string) bool {
 	pb := pushbullet.New(token)
 
 	link := requests.NewLink()
+	if channelTag != "" {
+		link.Push.ChannelTag = channelTag
+	}
 	link.Title = title
 	link.Body = message
 	link.Url = url
