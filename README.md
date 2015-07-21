@@ -27,9 +27,15 @@ func main() {
 	if pbhelper.SendNote("This is a note", "From Golang, through Pushbullet") {
 		fmt.Println("Push note was successful.")
 	}
+	if pbhelper.SendNoteToChannel("some_channel_for_testing", "This is a note", "From Golang, through Pushbullet") {
+		fmt.Println("Push note to channel was successful.")
+	}
 	
 	if pbhelper.SendLink("This is a link", "From Golang, through Pushbullet", "http://www.golang.org") {
 		fmt.Println("Push link was successful.")
+	}
+	if pbhelper.SendLinkToChannel("some_channel_for_testing", "This is a link", "From Golang, through Pushbullet", "http://www.golang.org") {
+		fmt.Println("Push link to channel was successful.")
 	}
 }
 ```
@@ -37,7 +43,7 @@ func main() {
 ## 4. build your binary
 
 ```
-$ go build -o /some/directory/pbhelper_test pbhelper_test.go
+$ go build -o /some/directory/test_pbhelper test_pbhelper.go
 ```
 
 ## 5. put your Pushbullet access token in a file
@@ -51,7 +57,7 @@ $ vi /some/directory/.pushbullet.token
 ## 6. run
 
 ```
-$ /some/directory/pbhelper_test
+$ /some/directory/test_pbhelper
 
 Push note was successful.
 Push link was successful.
