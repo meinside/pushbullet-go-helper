@@ -60,6 +60,8 @@ $ vi /some/directory/.pushbullet.token
 $ /some/directory/test_pbhelper
 
 Push note was successful.
+Push note to channel was successful.
 Push link was successful.
+Push link to channel was successful.
 ```
 
