@@ -1,5 +1,9 @@
 /*
-	last update: 2015.07.21.
+	My pushbullet-go helper class,
+	for reading access token from a file
+	and sending pushes easily.
+
+	last update: 2015.07.29.
 */
 
 package pbhelper
@@ -15,13 +19,13 @@ import (
 )
 
 const (
-	ACCESS_TOKEN_FILENAME = ".pushbullet.token"
+	AccessTokenFilename = ".pushbullet.token"
 )
 
 // read access token from file
 func readAccessToken() (token string, err error) {
 	confDir := filepath.Dir(os.Args[0])
-	tokenFile := filepath.Join(confDir, ACCESS_TOKEN_FILENAME)
+	tokenFile := filepath.Join(confDir, AccessTokenFilename)
 
 	if _, err := os.Stat(tokenFile); err != nil {
 		fmt.Printf("Access token file does not exist: %s\n", tokenFile)
@@ -53,7 +57,7 @@ func SendNoteToChannel(channelTag string, title string, message string) bool {
 
 	note := requests.NewNote()
 	if channelTag != "" {
-		note.Push.ChannelTag = channelTag
+		note.Push.ChannelTag = channelTag // set channel tag when provided
 	}
 	note.Title = title
 	note.Body = message
@@ -81,7 +85,7 @@ func SendLinkToChannel(channelTag string, title string, message string, url stri
 
 	link := requests.NewLink()
 	if channelTag != "" {
-		link.Push.ChannelTag = channelTag
+		link.Push.ChannelTag = channelTag // set channel tag when provided
 	}
 	link.Title = title
 	link.Body = message
